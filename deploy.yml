@@ -1,0 +1,15 @@
+- hosts: servers
+  tasks:
+    - name: Copy Python script to remote server
+      copy:
+        src: hello.py
+        dest: /home/your_user/hello.py
+        mode: '0755'
+
+    - name: Execute Python script
+      command: python3 /home/your_user/hello.py
+      register: result
+
+    - name: Show script output
+      debug:
+        var: result.stdout
