@@ -1,5 +1,6 @@
 - name: Demo Playbook
   hosts: localhost
+  connection: local
   tasks:
     - name: Create a test file
       copy:
