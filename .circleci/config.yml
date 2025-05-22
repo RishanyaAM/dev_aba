@@ -1,0 +1,30 @@
+version: 2.1
+
+executors:
+  python-executor:
+    docker:
+      - image: cimg/python:3.9
+
+jobs:
+  run-ansible:
+    executor: python-executor
+    steps:
+      - checkout
+      - run:
+          name: Install Ansible
+          command: |
+            python -m pip install --upgrade pip
+            pip install ansible
+      - run:
+          name: Run Ansible Playbook
+          command: |
+            ansible-playbook playbook.yml -i localhost,
+      - run:
+          name: Run Python Script
+          command: python hello.py
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - run-ansible
