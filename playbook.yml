@@ -1,0 +1,7 @@
+- name: Demo Playbook
+  hosts: localhost
+  tasks:
+    - name: Create a test file
+      copy:
+        content: "Hello from Ansible!"
+        dest: testfile.txt
